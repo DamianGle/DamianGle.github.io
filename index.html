@@ -5,6 +5,20 @@
 	<title>Document></title>
 </head>
 <body>
-	<h1> Damian Gle </h1>
+       <script>
+           function getChecked() {
+           const emailName = document.getElementById("email").value;
+           if (emailName.includes("@") && emailName.includes(".com")) {
+               alert("E-mail is valid");
+           } else {
+               alert("Not a valid e-mail");
+          }
+      }
+       </script>
+       
+       <br>
+	   <label for="Name">Adres email</label>
+           <input type="text" onchange="getChecked()" id="email" name="email" placeholder="aaa@gmail.com">
+       </br>
 </body>
 </html>
