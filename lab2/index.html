@@ -47,9 +47,44 @@
 			pattern="(http[s]*://)([a-zA-Z0-9-]+\.[0-9a-zA-Z]+)[?/]"
 			title="Strona WWW"
 			placeholder="https://wp.pl"><br><br>
+		</input>		
+		
+		<label for="sciezka_male">Katalog systemu (male litery):</label>
+		<input type="text" id="sciezka_male" name="sciezka_male"
+			pattern="[a-z]:\\[\\\|*\]?.*"
+			title="Sciezka(male litery)"
+			placeholder="c:\users\public"><br><br>
 		</input>
 		
-		<input type="submit">
+		<label for="sciezka_duze">Katalogu systemu (duże litery):</label>
+		<input type="text" id="sciezka_duze" name="sciezka_duze"
+			pattern="[a-zA-Z]:\\[\\\S|*\S]?.*"
+			title="Sciezka(duze litery)"
+			placeholder="C:\WinDowS\BooT"><br><br>
+		</input>
+		
+		<label for="sciezka_pliku">Sciezka do pliku:</label>
+		<input type="text" id="sciezka_pliku" name="sciezka_pliku"
+			pattern="(|((\\|/){1,2}\w+)\$?)((\\|/)(\w[\w ]*.*))"
+			title="Sciezka do pliku w katalogu"
+			placeholder="/home/desktop"><br><br>
+		</input>
+		
+		<label for="adres_ipv6">Adres IPV6:</label>
+		<input type="text" id="adres_ipv6" name="adres_ipv6"
+			pattern="^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$"
+			title="Adres Ipv6"
+			placeholder="bf2d:389e:ae24:d553:14b2:47b7:6b87:8d7b"><br><br>
+		</input>
+
+		<label for="numer_telefonu">Numer telefonu:</label>
+		<input type="text" id="numer_telefonu" name="numer_telefonu"
+			pattern="[0-9]{3}(-)?[0-9]{3}(-)?[0-9]{3}"
+			title="Numer telefonu"
+			placeholder="123-456-789"><br><br>
+		</input>
+		
+		<input type="submit" name="CHECK">
 	</form>
 </body>
 </html>
