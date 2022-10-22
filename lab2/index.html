@@ -83,16 +83,24 @@
 			title="Numer telefonu"
 			placeholder="123-456-789"><br><br>
 		</input>
-		
-		<input type="submit" name="CHECK">
-		
 	<h1> ------------------------------------------------------- </h1>
 	       <label for="date">Wybierz datę</label>
     	    	   <input type="date" id="date" name="date" class="form" required><br><br>
     	       
     	      <label for="date_dot2">Wybierz datę z tego tygodnia</label>
-    	      	   <input type="date" id="date_dot2" name="date_dot2" min="2022-10-17" max="2022-10-21" class="form" required><br><br>
+    	      	   <input type="date" id="date_dot2" name="date_dot2" min="2022-10-17" max="2022-10-21" class="form" required> <br><br>
+    	      	   
+    	      <label for="h12">Podaj godzinę (12h)</label>
+    		   <input type="time" id="h12" name="h12" min="00:00" max="12:00" class="form" required> <br><br>
+
+             <label for="h24">Podaj godzinę (24h)</label>
+                  <input type="time" id="h24" name="h24" class="form" required> <br><br>
     
+            <label for="head">Wybierz kolor</label>
+                  <input type="color" id="head" name="head" value="#000000"> <br><br>
+    	
+    	<input type="submit" name="CHECK">
+	
 	</form>
 </body>
 </html>
