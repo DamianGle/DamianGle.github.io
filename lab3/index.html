@@ -6,101 +6,15 @@
 </head>
 
 <body>
-	<form>
-		<label for="email">Adres Email:</label>
-		<input type="email" id="email" name="email"
-			pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-			title="Adres Email"
-			placeholder="email@wp.pl"><br><br>
-		</input>
-		
-		<label for="kod_pocztowy">Kod pocztowy:</label>
-		<input type="text" id="kod_pocztowy" name="kod_pocztowy"
-			pattern="[0-9]{2}-[0-9]{3}"
-			title="Kod pocztowy"
-			placeholder="11-500"><br><br>
-		</input>
-		
-		<label for="numer_nip">Numer NIP:</label>
-		<input type="text" id="numer_nip" name="numer_nip"
-			pattern="[A-Z]{2}[0-9]{10}"
-			title="Numer NIP"
-			placeholder="PL1234567890"><br><br>
-		</input>
-		
-		<label for="numer_dowodu">Numer dowodu:</label>
-		<input type="text" id="numer_dowodu" name="numer_dowodu"
-			pattern="[A-Z]{3}[0-9]{6}"
-			title="Numer dowodu"
-			placeholder="ZZA423567"><br><br>
-		</input>
-		
-		<label for="adres_ipv4">Adres IPV4:</label>
-		<input type="text" id="ipv4" name="ipv4"
-			pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
-			title="Adres IPV4"
-			placeholder="127.0.0.1"><br><br>
-		</input>		
-		
-		<label for="www">Strona WWW:</label>
-		<input type="url" id="www" name="www"
-			pattern="(http[s]*://)([a-zA-Z0-9-]+\.[0-9a-zA-Z]+)[?/]"
-			title="Strona WWW"
-			placeholder="https://wp.pl"><br><br>
-		</input>		
-		
-		<label for="sciezka_male">Katalog systemu (male litery):</label>
-		<input type="text" id="sciezka_male" name="sciezka_male"
-			pattern="[a-z]:\\[\\\|*\]?.*"
-			title="Sciezka(male litery)"
-			placeholder="c:\users\public"><br><br>
-		</input>
-		
-		<label for="sciezka_duze">Katalogu systemu (duże litery):</label>
-		<input type="text" id="sciezka_duze" name="sciezka_duze"
-			pattern="[a-zA-Z]:\\[\\\S|*\S]?.*"
-			title="Sciezka(duze litery)"
-			placeholder="C:\WinDowS\BooT"><br><br>
-		</input>
-		
-		<label for="sciezka_pliku">Sciezka do pliku:</label>
-		<input type="text" id="sciezka_pliku" name="sciezka_pliku"
-			pattern="(|((\\|/){1,2}\w+)\$?)((\\|/)(\w[\w ]*.*))"
-			title="Sciezka do pliku w katalogu"
-			placeholder="/home/desktop"><br><br>
-		</input>
-		
-		<label for="adres_ipv6">Adres IPV6:</label>
-		<input type="text" id="adres_ipv6" name="adres_ipv6"
-			pattern="^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$"
-			title="Adres Ipv6"
-			placeholder="bf2d:389e:ae24:d553:14b2:47b7:6b87:8d7b"><br><br>
-		</input>
-
-		<label for="numer_telefonu">Numer telefonu:</label>
-		<input type="text" id="numer_telefonu" name="numer_telefonu"
-			pattern="[0-9]{3}(-)?[0-9]{3}(-)?[0-9]{3}"
-			title="Numer telefonu"
-			placeholder="123-456-789"><br><br>
-		</input>
-	<h1> ------------------------------------------------------- </h1>
-	       <label for="date">Wybierz datę</label>
-    	    	   <input type="date" id="date" name="date" class="form" required><br><br>
-    	       
-    	      <label for="date_dot2">Wybierz datę z tego tygodnia</label>
-    	      	   <input type="date" id="date_dot2" name="date_dot2" min="2022-10-17" max="2022-10-21" class="form" required> <br><br>
-    	      	   
-    	      <label for="h12">Podaj godzinę (12h)</label>
-    		   <input type="time" id="h12" name="h12" min="00:00" max="12:00" class="form" required> <br><br>
-
-             <label for="h24">Podaj godzinę (24h)</label>
-                  <input type="time" id="h24" name="h24" class="form" required> <br><br>
-    
-            <label for="head">Wybierz kolor</label>
-                  <input type="color" id="head" name="head" value="#000000"> <br><br>
-    	
-    	<input type="submit" name="CHECK">
-	
-	</form>
+	    <div id="root">
+      <div id="buttonArea">
+        <button onclick="createRectangle()">Generuj klocek</button>
+      </div>
+      <div id="canvasArea">
+        <canvas id="myCanvas">
+          Canvas is not supported.
+        </canvas>
+      </div>
+    </div>
 </body>
 </html>
