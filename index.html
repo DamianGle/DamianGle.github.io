@@ -3,104 +3,274 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=evice-width, initial-scale=1.0">
 	<title>Document></title>
-</head>
-
-<body>
-	<form>
-		<label for="email">Adres Email:</label>
-		<input type="email" id="email" name="email"
-			pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
-			title="Adres Email"
-			placeholder="email@wp.pl"><br><br>
-		</input>
-		
-		<label for="kod_pocztowy">Kod pocztowy:</label>
-		<input type="text" id="kod_pocztowy" name="kod_pocztowy"
-			pattern="[0-9]{2}-[0-9]{3}"
-			title="Kod pocztowy"
-			placeholder="11-500"><br><br>
-		</input>
-		
-		<label for="numer_nip">Numer NIP:</label>
-		<input type="text" id="numer_nip" name="numer_nip"
-			pattern="[A-Z]{2}[0-9]{10}"
-			title="Numer NIP"
-			placeholder="PL1234567890"><br><br>
-		</input>
-		
-		<label for="numer_dowodu">Numer dowodu:</label>
-		<input type="text" id="numer_dowodu" name="numer_dowodu"
-			pattern="[A-Z]{3}[0-9]{6}"
-			title="Numer dowodu"
-			placeholder="ZZA423567"><br><br>
-		</input>
-		
-		<label for="adres_ipv4">Adres IPV4:</label>
-		<input type="text" id="ipv4" name="ipv4"
-			pattern="^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
-			title="Adres IPV4"
-			placeholder="127.0.0.1"><br><br>
-		</input>		
-		
-		<label for="www">Strona WWW:</label>
-		<input type="url" id="www" name="www"
-			pattern="(http[s]*://)([a-zA-Z0-9-]+\.[0-9a-zA-Z]+)[?/]"
-			title="Strona WWW"
-			placeholder="https://wp.pl"><br><br>
-		</input>		
-		
-		<label for="sciezka_male">Katalog systemu (male litery):</label>
-		<input type="text" id="sciezka_male" name="sciezka_male"
-			pattern="[a-z]:\\[\\\|*\]?.*"
-			title="Sciezka(male litery)"
-			placeholder="c:\users\public"><br><br>
-		</input>
-		
-		<label for="sciezka_duze">Katalogu systemu (duże litery):</label>
-		<input type="text" id="sciezka_duze" name="sciezka_duze"
-			pattern="[a-zA-Z]:\\[\\\S|*\S]?.*"
-			title="Sciezka(duze litery)"
-			placeholder="C:\WinDowS\BooT"><br><br>
-		</input>
-		
-		<label for="sciezka_pliku">Sciezka do pliku:</label>
-		<input type="text" id="sciezka_pliku" name="sciezka_pliku"
-			pattern="(|((\\|/){1,2}\w+)\$?)((\\|/)(\w[\w ]*.*))"
-			title="Sciezka do pliku w katalogu"
-			placeholder="/home/desktop"><br><br>
-		</input>
-		
-		<label for="adres_ipv6">Adres IPV6:</label>
-		<input type="text" id="adres_ipv6" name="adres_ipv6"
-			pattern="^([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$"
-			title="Adres Ipv6"
-			placeholder="bf2d:389e:ae24:d553:14b2:47b7:6b87:8d7b"><br><br>
-		</input>
-
-		<label for="numer_telefonu">Numer telefonu:</label>
-		<input type="text" id="numer_telefonu" name="numer_telefonu"
-			pattern="[0-9]{3}(-)?[0-9]{3}(-)?[0-9]{3}"
-			title="Numer telefonu"
-			placeholder="123-456-789"><br><br>
-		</input>
-	<h1> ------------------------------------------------------- </h1>
-	       <label for="date">Wybierz datę</label>
-    	    	   <input type="date" id="date" name="date" class="form" required><br><br>
-    	       
-    	      <label for="date_dot2">Wybierz datę z tego tygodnia</label>
-    	      	   <input type="date" id="date_dot2" name="date_dot2" min="2022-10-17" max="2022-10-21" class="form" required> <br><br>
-    	      	   
-    	      <label for="h12">Podaj godzinę (12h)</label>
-    		   <input type="time" id="h12" name="h12" min="00:00" max="12:00" class="form" required> <br><br>
-
-             <label for="h24">Podaj godzinę (24h)</label>
-                  <input type="time" id="h24" name="h24" class="form" required> <br><br>
-    
-            <label for="head">Wybierz kolor</label>
-                  <input type="color" id="head" name="head" value="#000000"> <br><br>
-    	
-    	<input type="submit" name="CHECK">
 	
-	</form>
-</body>
+      <style>
+	      body 
+	      {
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+		overflow: hidden;
+	      }
+	      #root 
+	      {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+	      }
+	      #buttonArea 
+	      {
+		flex: 20% 0 0;
+	      }
+	      #canvasArea 
+	      {
+		flex: 80% 0 0;
+	      }
+	      button 
+	      {
+		width: 100%;
+		height: 100%;
+	      }
+     </style>
+</head>
+  
+<body bgcolor="#A9A9A9">
+    <div id="root">
+	      <div id="buttonArea" bgcolor="orange">
+	      		<button onclick="createRectangle()">Generuj klocek</button>
+	      </div>
+     
+	      <div id="canvasArea">
+	          <canvas id="myCanvas">. </canvas>
+	      </div>
+    </div>
+
+    <script>
+      let canvas = document.getElementById("myCanvas");
+      let ctx = canvas.getContext("2d");
+
+      let colors = ["orange", "black", "gray", "yellow"];
+      let rectangles = [];
+
+      let drag = false;
+      let dragHoldX, dragHoldY, dragIndex;
+      let mouseX, mouseY;
+      let previousMouseX, previousMouseY;
+
+      window.onload = init;
+      canvas.addEventListener("mousedown", mouseDown, false);
+      window.addEventListener("resize", resizeCanvas, false);
+      let platform;
+
+      function resizeCanvas() 
+      {
+         canvas.width = window.innerWidth - window.innerWidth * 0.2;
+         canvas.height = window.innerHeight;
+
+         platform = new Rectangle(0, canvas.height, canvas.width, 0, "white");
+      }
+
+      class Rectangle 
+      {
+        constructor(x, y, width, height, color) 
+        {
+          this.x = x;
+          this.y = y;
+          this.width = width;
+          this.height = height;
+          this.color = color;
+        }
+
+        drawRectangle() 
+        {
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+      }
+
+      function createRectangle() 
+      {
+        rectangles.push(
+          new Rectangle(
+            Math.floor(Math.random() * Math.floor(canvas.width - 100)) + 100,
+            Math.floor(Math.random() * Math.floor(canvas.height - 300)) + 100,
+            100,
+            90,
+            colors[Math.floor(Math.random() * colors.length)]
+          )
+        );
+      }
+
+      function drawRectangles() 
+      {
+        rectangles.forEach((rectangle) => {rectangle.drawRectangle();});
+      }
+
+      function mouseDown(e) 
+      {
+         let bRect = canvas.getBoundingClientRect();
+         mouseX = e.clientX - bRect.left;
+         mouseY = e.clientY - bRect.top;
+
+         for (let i = 0; i < rectangles.length; i++) 
+         {
+           if (inRectangle(rectangles[i], mouseX, mouseY)) 
+           {
+             drag = true;
+             dragHoldX = mouseX - rectangles[i].x;
+             dragHoldY = mouseY - rectangles[i].y;
+             dragIndex = i;
+           }
+         }
+
+         if (drag) 
+         {
+           window.addEventListener("mousemove", mouseMove, false);
+         }
+
+         canvas.removeEventListener("mousedown", mouseDown, false);
+         window.addEventListener("mouseup", mouseUp, false);
+
+         return false;
+      }
+
+      function mouseMove(e) 
+      {
+        let posX, posY;
+        let height = rectangles[dragIndex].height;
+        let width = rectangles[dragIndex].width;
+        let minX = 0;
+        let maxX = canvas.width - width;
+        let minY = 0;
+        let maxY = canvas.height - height;
+
+        let bRect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - bRect.left;
+        mouseY = e.clientY - bRect.top;
+
+        if (previousMouseX === mouseX && previousMouseY === mouseY) 
+        {
+          return;
+        }
+
+        posX = mouseX - dragHoldX;
+        posX = posX < minX ? minX : posX > maxX ? maxX : posX;
+        posY = mouseY - dragHoldY;
+        posY = posY < minY ? minY : posY > maxY ? maxY : posY;
+
+        for (let i = 0; i < rectangles.length; i++) 
+        {
+          if (i !== dragIndex) 
+          {
+            if (isCollision(rectangles[dragIndex], rectangles[i])) 
+            {
+              console.log(true);
+              resolveCollision(rectangles[dragIndex], rectangles[i]);
+              return;
+            }
+          }
+        }
+        console.log(false);
+        rectangles[dragIndex].x = posX;
+        rectangles[dragIndex].y = posY;
+        previousMouseX = mouseX;
+        previousMouseY = mouseY
+      }
+
+      function mouseUp() 
+      {
+        canvas.addEventListener("mousedown", mouseDown, false);
+        window.removeEventListener("mouseup", mouseUp, false);
+
+        if (drag) 
+        {
+          drag = false;
+          window.removeEventListener("mousemove", mouseMove, false);
+        }
+      }
+
+      function inRectangle(rectangle, mouseX, mouseY) 
+      {
+        let isInRectangle = false;
+
+        let left = rectangle.x;
+        let right = rectangle.x + rectangle.width;
+        let top = rectangle.y;
+        let bottom = rectangle.y + rectangle.height;
+
+        if (right >= mouseX && left <= mouseX && bottom >= mouseY && top <= mouseY) 
+        {
+          isInRectangle = true;
+        }
+
+        return isInRectangle;
+      }
+
+      function isCollision(draggedRectangle, staticRectangle) 
+      {
+         if (
+           draggedRectangle.x < staticRectangle.x + staticRectangle.width &&
+           draggedRectangle.x + draggedRectangle.width > staticRectangle.x &&
+           draggedRectangle.y < staticRectangle.y + staticRectangle.height &&
+           draggedRectangle.y + draggedRectangle.height > staticRectangle.y) 
+           {
+             	return true;						
+           }
+
+           return false;
+       }
+
+       function resolveCollision(draggedRectangle, staticRectangle) 
+       {
+           draggedRectangleCenterX = (draggedRectangle.x + draggedRectangle.width) / 2;
+           draggedRectangleCenterY = (draggedRectangle.y + draggedRectangle.height) / 2;
+
+           staticRectangleCenterX = (staticRectangle.x + staticRectangle.width) / 2;
+           staticRectangleCenterY = (staticRectangle.y + staticRectangle.height) / 2;
+        
+           vectorX = draggedRectangleCenterX - staticRectangleCenterX;
+           vectorY = draggedRectangleCenterY - staticRectangleCenterY;
+
+           if ( Math.abs(vectorX / staticRectangle.width) > Math.abs(vectorY / staticRectangle.height)) 
+           {
+                if (vectorX < 0) 
+                {
+                    draggedRectangle.x = staticRectangle.x - draggedRectangle.width;
+                } 
+                else 
+                {
+                    draggedRectangle.x = staticRectangle.x + staticRectangle.width;
+                }
+           } 
+           else 
+           {
+               if (vectorY < 0) 
+               {
+                   draggedRectangle.y = staticRectangle.y - draggedRectangle.height;
+               } 
+               else 
+               {
+                  draggedRectangle.y = staticRectangle.y + staticRectangle.height;
+               }
+           }
+       }
+
+       function init() 
+       {
+         resizeCanvas();
+         requestAnimationFrame(animate);
+       }
+
+       function animate() 
+       {
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         drawRectangles();
+         platform.drawRectangle();
+         requestAnimationFrame(animate);
+       }
+    </script>
+  </body>
 </html>
