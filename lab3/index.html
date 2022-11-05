@@ -77,8 +77,53 @@
         );
       }
       
+      class Rectangle {
+        constructor(x, y, width, height, color) {
+          this.x = x;
+          this.y = y;
+          this.width = width;
+          this.height = height;
+          this.color = color;
+        }
+
+        drawRectangle() {
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+      }
+
+      function createRectangle() {
+        rectangles.push(
+          new Rectangle(
+            Math.floor(Math.random() * Math.floor(canvas.width - 100)) + 100,
+            Math.floor(Math.random() * Math.floor(canvas.height - 300)) + 100,
+            100,
+            90,
+            colors[Math.floor(Math.random() * colors.length)]
+          )
+        );
+      }
+
+      function drawRectangles() {
+        rectangles.forEach((rectangle) => {
+          rectangle.drawRectangle();
+        });
+      }
+      
+           // Init function
       function init() {
         resizeCanvas();
+        requestAnimationFrame(animate);
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Draw Elements
+        drawRectangles();
+        platform.drawRectangle();
+
+        requestAnimationFrame(animate);
       }
     </script>
     
