@@ -6,66 +6,66 @@
   </head>
   <body>
     <form id="addForm" onsubmit="return add(event)">
-      <label for="name">Name:</label>
+      <label for="name">Imie:</label>
       <input name="name" type="text" />
       <br />
-      <label for="lastName">Last name:</label>
+      <label for="lastName">Nazwisko:</label>
       <input name="lastName" type="text" />
       <br />
-      <label for="age">Age:</label>
+      <label for="age">Wiek:</label>
       <input name="age" type="number" />
       <br />
-      <label for="email">email:</label>
+      <label for="email">Adres email:</label>
       <input name="email" type="email" />
       <br />
-      <label for="pesel">Pesel</label>
+      <label for="pesel">Numer pesel</label>
       <input name="pesel" type="text" />
       <br />
-      <label for="address">Address</label>
+      <label for="address">Addres</label>
       <input name="address" type="text" />
       <br />
-      <label for="phoneNumber">Phone Number:</label>
+      <label for="phoneNumber">Numer telefonu:</label>
       <input name="phoneNumber" type="text" />
       <br />
       <input id="submitBtn" type="submit" value="Add entry" />
     </form>
     <br />
     <div id="searchFiled">
-      <input id="searchBar" name="search" type="text" placeholder="Search..." />
-      <button onclick="return search(event)">Search</button>
+      <input id="searchBar" name="search" type="text" placeholder="Szukaj..." />
+      <button onclick="return search(event)">Szukaj</button>
     </div>
     <br />
     <div id="tableDiv"></div>
     <br />
     <script type="text/javascript">
-      window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
-      window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-      window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+    window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
       if (!window.indexedDB) {
         window.alert(
-          "It is not support for YOU."
+          "Your browser doesn't support a stable version of IndexedDB."
         );
       }
 
       const clientData = [
         {
-          name: "Piotr",
+          name: "Karol",
           lastName: "Nowak",
-          age: "30",
-          email: "piotr@gmail.com",
+          age: "12",
+          email: "karol@gmail.com",
           pesel: '12345678901',
-          addres: "Kilinskiego 9",
-          phoneNumber: "123456789"
+          addres: "Zachodnia 1",
+          phoneNumber: "500500200"
         },
         {
-          name: "Jan",
+          name: "Marcin",
           lastName: "Kowalski",
-          age: "31",
-          email: "jan@gmail.com",
+          age: "23",
+          email: "marcin@gmail.com",
           pesel: '12345678902',
-          address: "Kilinskiego 5",
-          phoneNumber: "234567890"
+          address: "Zachodnia 2",
+          phoneNumber: "500400200"
         },
       ];
 
@@ -100,7 +100,7 @@
           objectStore.add(clientData[i]);
         }
       };
-      
+
       function add(event) {
         event.preventDefault();
 
@@ -130,7 +130,8 @@
           );
         };
       }
-           function search(event) {
+
+      function search(event) {
         event.preventDefault();
 
         let searchInputs = document.getElementById("searchBar").value.split(' ');
