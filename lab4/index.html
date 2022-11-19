@@ -50,6 +50,29 @@
         window.alert("It is not support for YOU.");
       }
       
+      const clientData = [
+        {
+          name: "Piotr",
+          lastName: "Nowak",
+          age: "30",
+          email: "piotr@gmail.com",
+          pesel: '12345678901',
+          addres: "Kilinskiego 3",
+          phoneNumber: "234567890"
+        },
+        {
+          name: "Jan",
+          lastName: "Kowalski",
+          age: "31",
+          email: "jan@gmail.com",
+          pesel: '12345678902',
+          address: "Zachodnia 8",
+          phoneNumber: "123456789"
+        },
+      ];
+
+      let db;
+      let request = window.indexedDB.open("newDatabase", 1);
     </script>
   </body>
 </html>
