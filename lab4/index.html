@@ -1,0 +1,276 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=evice-width, initial-scale=1.0">
+	<title>Document></title>
+	
+      <style>
+	      body 
+	      {
+		height: 100%;
+		margin: 0px;
+		padding: 0px;
+		overflow: hidden;
+	      }
+	      #root 
+	      {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		align-content: stretch;
+	      }
+	      #buttonArea 
+	      {
+		flex: 20% 0 0;
+	      }
+	      #canvasArea 
+	      {
+		flex: 80% 0 0;
+	      }
+	      button 
+	      {
+		width: 100%;
+		height: 100%;
+	      }
+     </style>
+</head>
+  
+<body bgcolor="#A9A9A9">
+    <div id="root">
+	      <div id="buttonArea" bgcolor="orange">
+	      		<button onclick="createRectangle()">Generuj klocek</button>
+	      </div>
+     
+	      <div id="canvasArea">
+	          <canvas id="myCanvas">. </canvas>
+	      </div>
+    </div>
+
+    <script>
+      let canvas = document.getElementById("myCanvas");
+      let ctx = canvas.getContext("2d");
+
+      let colors = ["orange", "black", "gray", "yellow"];
+      let rectangles = [];
+
+      let drag = false;
+      let dragHoldX, dragHoldY, dragIndex;
+      let mouseX, mouseY;
+      let previousMouseX, previousMouseY;
+
+      window.onload = init;
+      canvas.addEventListener("mousedown", mouseDown, false);
+      window.addEventListener("resize", resizeCanvas, false);
+      let platform;
+
+      function resizeCanvas() 
+      {
+         canvas.width = window.innerWidth - window.innerWidth * 0.2;
+         canvas.height = window.innerHeight;
+
+         platform = new Rectangle(0, canvas.height, canvas.width, 0, "white");
+      }
+
+      class Rectangle 
+      {
+        constructor(x, y, width, height, color) 
+        {
+          this.x = x;
+          this.y = y;
+          this.width = width;
+          this.height = height;
+          this.color = color;
+        }
+
+        drawRectangle() 
+        {
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
+      }
+
+      function createRectangle() 
+      {
+        rectangles.push(
+          new Rectangle(
+            Math.floor(Math.random() * Math.floor(canvas.width - 100)) + 100,
+            Math.floor(Math.random() * Math.floor(canvas.height - 300)) + 100,
+            100,
+            90,
+            colors[Math.floor(Math.random() * colors.length)]
+          )
+        );
+      }
+
+      function drawRectangles() 
+      {
+        rectangles.forEach((rectangle) => {rectangle.drawRectangle();});
+      }
+
+      function mouseDown(e) 
+      {
+         let bRect = canvas.getBoundingClientRect();
+         mouseX = e.clientX - bRect.left;
+         mouseY = e.clientY - bRect.top;
+
+         for (let i = 0; i < rectangles.length; i++) 
+         {
+           if (inRectangle(rectangles[i], mouseX, mouseY)) 
+           {
+             drag = true;
+             dragHoldX = mouseX - rectangles[i].x;
+             dragHoldY = mouseY - rectangles[i].y;
+             dragIndex = i;
+           }
+         }
+
+         if (drag) 
+         {
+           window.addEventListener("mousemove", mouseMove, false);
+         }
+
+         canvas.removeEventListener("mousedown", mouseDown, false);
+         window.addEventListener("mouseup", mouseUp, false);
+
+         return false;
+      }
+
+      function mouseMove(e) 
+      {
+        let posX, posY;
+        let height = rectangles[dragIndex].height;
+        let width = rectangles[dragIndex].width;
+        let minX = 0;
+        let maxX = canvas.width - width;
+        let minY = 0;
+        let maxY = canvas.height - height;
+
+        let bRect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - bRect.left;
+        mouseY = e.clientY - bRect.top;
+
+        if (previousMouseX === mouseX && previousMouseY === mouseY) 
+        {
+          return;
+        }
+
+        posX = mouseX - dragHoldX;
+        posX = posX < minX ? minX : posX > maxX ? maxX : posX;
+        posY = mouseY - dragHoldY;
+        posY = posY < minY ? minY : posY > maxY ? maxY : posY;
+
+        for (let i = 0; i < rectangles.length; i++) 
+        {
+          if (i !== dragIndex) 
+          {
+            if (isCollision(rectangles[dragIndex], rectangles[i])) 
+            {
+              console.log(true);
+              resolveCollision(rectangles[dragIndex], rectangles[i]);
+              return;
+            }
+          }
+        }
+        console.log(false);
+        rectangles[dragIndex].x = posX;
+        rectangles[dragIndex].y = posY;
+        previousMouseX = mouseX;
+        previousMouseY = mouseY
+      }
+
+      function mouseUp() 
+      {
+        canvas.addEventListener("mousedown", mouseDown, false);
+        window.removeEventListener("mouseup", mouseUp, false);
+
+        if (drag) 
+        {
+          drag = false;
+          window.removeEventListener("mousemove", mouseMove, false);
+        }
+      }
+
+      function inRectangle(rectangle, mouseX, mouseY) 
+      {
+        let isInRectangle = false;
+
+        let left = rectangle.x;
+        let right = rectangle.x + rectangle.width;
+        let top = rectangle.y;
+        let bottom = rectangle.y + rectangle.height;
+
+        if (right >= mouseX && left <= mouseX && bottom >= mouseY && top <= mouseY) 
+        {
+          isInRectangle = true;
+        }
+
+        return isInRectangle;
+      }
+
+      function isCollision(draggedRectangle, staticRectangle) 
+      {
+         if (
+           draggedRectangle.x < staticRectangle.x + staticRectangle.width &&
+           draggedRectangle.x + draggedRectangle.width > staticRectangle.x &&
+           draggedRectangle.y < staticRectangle.y + staticRectangle.height &&
+           draggedRectangle.y + draggedRectangle.height > staticRectangle.y) 
+           {
+             	return true;						
+           }
+
+           return false;
+       }
+
+       function resolveCollision(draggedRectangle, staticRectangle) 
+       {
+           draggedRectangleCenterX = (draggedRectangle.x + draggedRectangle.width) / 2;
+           draggedRectangleCenterY = (draggedRectangle.y + draggedRectangle.height) / 2;
+
+           staticRectangleCenterX = (staticRectangle.x + staticRectangle.width) / 2;
+           staticRectangleCenterY = (staticRectangle.y + staticRectangle.height) / 2;
+        
+           vectorX = draggedRectangleCenterX - staticRectangleCenterX;
+           vectorY = draggedRectangleCenterY - staticRectangleCenterY;
+
+           if ( Math.abs(vectorX / staticRectangle.width) > Math.abs(vectorY / staticRectangle.height)) 
+           {
+                if (vectorX < 0) 
+                {
+                    draggedRectangle.x = staticRectangle.x - draggedRectangle.width;
+                } 
+                else 
+                {
+                    draggedRectangle.x = staticRectangle.x + staticRectangle.width;
+                }
+           } 
+           else 
+           {
+               if (vectorY < 0) 
+               {
+                   draggedRectangle.y = staticRectangle.y - draggedRectangle.height;
+               } 
+               else 
+               {
+                  draggedRectangle.y = staticRectangle.y + staticRectangle.height;
+               }
+           }
+       }
+
+       function init() 
+       {
+         resizeCanvas();
+         requestAnimationFrame(animate);
+       }
+
+       function animate() 
+       {
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         drawRectangles();
+         platform.drawRectangle();
+         requestAnimationFrame(animate);
+       }
+    </script>
+  </body>
+</html>
