@@ -4,52 +4,50 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset = utf-8" />
   </head>
-  
   <body>
-	  <form id="addForm" onsubmit="return add(event)">
-	      <label for="name">Imie:</label>
-	      <input name="name" type="text" />
-	      <br />
-	      <label for="lastName">Nazwisko:</label>
-	      <input name="lastName" type="text" />
-	      <br />
-	      <label for="age">Wiek:</label>
-	      <input name="age" type="number" />
-	      <br />
-	      <label for="email">Adres email:</label>
-	      <input name="email" type="email" />
-	      <br />
-	      <label for="pesel">Numer PESEL</label>
-	      <input name="pesel" type="text" />
-	      <br />
-	      <label for="address">Adres</label>
-	      <input name="address" type="text" />
-	      <br />
-	      <label for="phoneNumber">Numer telefonu:</label>
-	      <input name="phoneNumber" type="text" />
-	      <br />
-	      <input id="submitBtn" type="submit" value="Dodaj do bazy" />
-	  </form>
-	  
-    	<br />
-	    <div id="searchFiled">
-	      <input id="searchBar" name="search" type="text" placeholder="Search..." />
-	      <button onclick="return search(event)">Search</button>
-	    </div>
-    	<br />
-    	<div id="tableDiv"></div>
+    <form id="addForm" onsubmit="return add(event)">
+      <label for="name">Name:</label>
+      <input name="name" type="text" />
+      <br />
+      <label for="lastName">Last name:</label>
+      <input name="lastName" type="text" />
+      <br />
+      <label for="age">Age:</label>
+      <input name="age" type="number" />
+      <br />
+      <label for="email">email:</label>
+      <input name="email" type="email" />
+      <br />
+      <label for="pesel">Pesel</label>
+      <input name="pesel" type="text" />
+      <br />
+      <label for="address">Address</label>
+      <input name="address" type="text" />
+      <br />
+      <label for="phoneNumber">Phone Number:</label>
+      <input name="phoneNumber" type="text" />
+      <br />
+      <input id="submitBtn" type="submit" value="Add entry" />
+    </form>
     <br />
-    
+    <div id="searchFiled">
+      <input id="searchBar" name="search" type="text" placeholder="Search..." />
+      <button onclick="return search(event)">Search</button>
+    </div>
+    <br />
+    <div id="tableDiv"></div>
+    <br />
     <script type="text/javascript">
       window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
       window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
       window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
-      if (!window.indexedDB) 
-      {
-        window.alert("It is not support for YOU.");
+      if (!window.indexedDB) {
+        window.alert(
+          "It is not support for YOU."
+        );
       }
-      
+
       const clientData = [
         {
           name: "Piotr",
@@ -57,8 +55,8 @@
           age: "30",
           email: "piotr@gmail.com",
           pesel: '12345678901',
-          addres: "Kilinskiego 3",
-          phoneNumber: "234567890"
+          addres: "Kilinskiego 9",
+          phoneNumber: "123456789"
         },
         {
           name: "Jan",
@@ -66,17 +64,42 @@
           age: "31",
           email: "jan@gmail.com",
           pesel: '12345678902',
-          address: "Zachodnia 8",
-          phoneNumber: "123456789"
+          address: "Kilinskiego 5",
+          phoneNumber: "234567890"
         },
       ];
 
       let db;
       let request = window.indexedDB.open("newDatabase", 1);
+
+      request.onerror = function (event) {
+        console.log("error: The database is opened failed");
+      };
+
+      request.onsuccess = function (event) {
+        db = request.result;
+        console.log("success: The database " + db + " is opened successfully");
+        drawTable();
+      };
+
+      request.onupgradeneeded = function (event) {
+        var db = event.target.result;
+        var objectStore = db.createObjectStore("client", {
+          autoIncrement: true,
+        });
+
+        objectStore.createIndex("name", "name", { unique: false });
+        objectStore.createIndex("lastName", "lastName", { unique: false });
+        objectStore.createIndex("age", "age", { unique: false });
+        objectStore.createIndex("email", "email", { unique: true });
+        objectStore.createIndex("pesel", "pesel", { unique: true });
+        objectStore.createIndex("address", "address", { unique: false });
+        objectStore.createIndex("phoneNumber", "phoneNumber", { unique: true });
+
+        for (var i in clientData) {
+          objectStore.add(clientData[i]);
+        }
+      };
     </script>
   </body>
 </html>
-
-
-
-
