@@ -129,6 +129,19 @@ function generateEmployee() {
     }
 }
 
+function editEmployee() {
+    var employeeID = $('#delete_id').val();
+    
+    request.onsuccess = function (event) {
+        loadTable();
+        clearButtons();
+    };
+
+    request.onerror = function (event) {
+        alert("error");
+    }
+}
+
 function deleteEmployee() {
     var employeeID = $('#delete_id').val();
     var request = db.transaction(["employee"], "readwrite")
