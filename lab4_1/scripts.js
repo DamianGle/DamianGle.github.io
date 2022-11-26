@@ -95,12 +95,12 @@ function generateEmployee() {
     var random_val = Math.floor(Math.random() * 4);
     const surnames = ["Kowalski", "Nowak", "Moscicki", "Fryderyk"];
     var random_val_2 = Math.floor(Math.random() * 4);
-    var age = Math.floor(Math.random() * 99) + 18;
+    var age = Math.floor(Math.random() * 75) + 18;
     var employeeID = String(Math.floor(Math.random() * 99));
     var name = names[random_val];
     var surname = surnames[random_val_2]
     var postal_1 = Math.floor(Math.random() * 99);
-    var postal_2 = Math.floor(Math.random() * 999) + 100;
+    var postal_2 = Math.floor(Math.random() * 898) + 100;
     var postal = String(postal_1) + '-' + String(postal_2)
     
     const email_domain = ["@wp.pl", "@gmail.com", "@o2.pl", "@op.pl"];
