@@ -20,6 +20,7 @@
             <th style="width:16em">WWW</th>
             <th style="width:11em">Data</th>
             <th style="width:11em">Numer Tel</th>
+            <th style="width:11em">PESEL</th>
         </thead>
     </table><br>
     <label for="ID">ID: </label> <input id="add_id" type="text" placeholder="01" pattern="[0-9]{1-6}"><i> (Po podaniu ID istnieje możliwość nadpisania rekordu o podanym numerze)</i><br><br>
@@ -31,7 +32,8 @@
     <label for="email">Adres Email: </label> <input id="add_email" type="text" placeholder="email@wp.pl" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"><br><br>
     <label for="www">Strona WWW:</label><input type="text" id="add_www" pattern="https?://.*" placeholder="https://onet.pl"><br><br>
     <label for="date">Data: </label> <input type="text" id="add_date" placeholder="Wed Apr 28 2021"><br><br>
-    <label for="date">Numer telefonu: </label> <input type="text" id="add_tel_num" placeholder="Wed Apr 28 2021"><br><br>
+    <label for="tel_num">Numer telefonu: </label> <input type="text" id="add_tel_num" placeholder="123456789"><br><br>
+    <label for="pesel">PESEL: </label> <input type="text" id="add_pesel" placeholder="11223345567"><br><br>
     <button onclick="addEmployee()">Wyślij</button> <button onclick="generateData()">GENERUJ LOSOWE DANE</button>
 </body>
 </html>
