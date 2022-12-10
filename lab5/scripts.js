@@ -9,7 +9,7 @@ if (!window.indexedDB) {
     window.alert("Brak wsparcia IndexedDB na twoja przegladarke.")
 };
 
-const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"Thu Apr 29 2021"}];
+const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"Thu Apr 29 2021", tel_num:"123456789"}];
 
 var db;
 var request = window.indexedDB.open("newDatabase", 1);
@@ -53,6 +53,7 @@ function loadTable() {
                 '<td class="Email">' + cursor.value.email + '</td>' +
                 '<td class="WWW">' + cursor.value.www + '</td>' +
                 '<td class="Data">' + cursor.value.date + '</td>' +
+                '<td class="Numer">' + cursor.value.tel_num + '</td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                 '</tr>');
                 
@@ -73,6 +74,7 @@ function addEmployee() {
     var email = $('#add_email').val();
     var www = $('#add_www').val();
     var date = $('#add_date').val();
+    var tel = $('#add_tel_num').val();
     var request = db.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .add({
@@ -84,7 +86,8 @@ function addEmployee() {
             postal: postal,
             email: email,
             www: www,
-            date: date
+            date: date,
+            tel_num: tel
         });
 
 
@@ -135,6 +138,7 @@ function clearButtons() {
     $('#add_email').val("");
     $('#add_www').val("");
     $("#add_date").val("");
+    $("#add_tel_num").val("");
 };
 
 function searchtable() {
@@ -164,6 +168,7 @@ function searchtable() {
                     '<td class="Email">' + cursor.value.email + '</td>' +
                     '<td class="WWW">' + cursor.value.www + '</td>' +
                     '<td class="Data">' + cursor.value.date + '</td>' +
+                    '<td class="Numer">' + cursor.value.tel_num + '</td>' +
                     '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
                     '</tr>');
                                                     } 
@@ -203,7 +208,8 @@ function generateData(){
     document.getElementById("add_postal").value = Math.floor((Math.random() * 89) + 10).toString() + '-' + Math.floor((Math.random() * 899) + 100).toString();
     document.getElementById("add_email").value = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5) + '@gmail.com';         
     document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
-    document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);     
+    document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);
+    document.getElementById("add_tel_num").value = "123456789";     
                         }
 
 function refresh(){
