@@ -12,7 +12,7 @@ if (!window.indexedDB) {
 const employeeData = [{id:"01", name:"Jan", surname:"Kowalski", age:"20", nd:"CAY123456", postal:"22-550", email:"example@wp.pl", www:"https://krzak.pl", date:"Thu Apr 29 2021", tel_num:"123456789", pesel: "11223345567"}];
 
 var db;
-var request = window.indexedDB.open("newDatabase", 1);
+var request = window.indexedDB.open("newDatabase111", 1);
 
 request.onerror = function (event) {
     console.log("error: ");
@@ -217,7 +217,7 @@ function generateData(){
     document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
     document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);
     document.getElementById("add_tel_num").value = "123456789";  
-    document.getElementById("add_pesel").value = "11223345567";     
+    document.getElementById("add_pesel").value = "11223345167";     
                         }
 
 function refresh(){

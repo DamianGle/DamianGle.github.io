@@ -217,7 +217,7 @@ function generateData(){
     document.getElementById("add_www").value = 'https://' + getRandomString(Math.floor((Math.random() * 12) + 5)) + '.com';
     document.getElementById("add_date").value = randomDate(new Date(2021, 4, 4), new Date()).toString().substring(0, 16);
     document.getElementById("add_tel_num").value = "123456789";  
-    document.getElementById("add_pesel").value = "11223345567";     
+    document.getElementById("add_pesel").value = "11223345167";     
                         }
 
 function refresh(){
