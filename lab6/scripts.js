@@ -135,7 +135,30 @@ function deleteEmployee(x) {
 };
 
 function editEmployee(x) {
+        var objectStore = db
+          .transaction(["employee"], "readwrite")
+          .objectStore("employee");
 
+        var request = objectStore.get(x);
+        request.onerror = function (event) {
+          console.log("Something went wrong");
+        };
+        request.onsuccess = function (event) {
+          let data = event.target.result;
+
+          document.getElementById("add_id").value = x;
+          document.getElementById("add_name").value = data.name;
+          document.getElementById("add_surname").value = data.surname;
+          document.getElementById("add_age").value = data.age;
+          document.getElementById("add_nd").value = data.nd;
+          document.getElementById("add_postal").value = data.postal;
+          document.getElementById("add_email").value = data.email;
+          
+          document.getElementById("add_www").value = data.www;
+          document.getElementById("add_date").value = data.date;
+          document.getElementById("add_tel_num").value = data.tel_num;
+          document.getElementById("add_pesel").value = data.pesel;
+        };
 };
 
 function clearButtons() {
