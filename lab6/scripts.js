@@ -56,6 +56,7 @@ function loadTable() {
                 '<td class="Numer">' + cursor.value.tel_num + '</td>' +
                 '<td class="PESEL">' + cursor.value.pesel + '</td>' +
                 '<td><button style="background-color:red;" onClick="deleteEmployee(\'' + cursor.key + '\')">X</button>' +
+                '<td><button style="background-color:green;" onClick="editEmployee(\'' + cursor.key + '\')">E</button>' +
                 '</tr>');
                 
                 } else {
@@ -131,6 +132,10 @@ function deleteEmployee(x) {
         loadTable();
         clearButtons();
     };
+};
+
+function editEmployee(x) {
+
 };
 
 function clearButtons() {
